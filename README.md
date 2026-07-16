@@ -628,3 +628,451 @@ The selected technology stack satisfies the constraints documented within the So
 
 ---
 
+## Derived Requirements
+
+Although the Software Requirements Specification established the project's explicit business and functional requirements, the analysis process identified several additional requirements that were not directly articulated by stakeholders but were essential to delivering a complete, reliable and operationally viable solution. These derived requirements emerged through detailed examination of business workflows, entity relationships, process dependencies, exception scenarios and implementation feasibility. Their identification reduced ambiguity, strengthened solution completeness and ensured alignment between business objectives and technical implementation. The SRS itself distinguishes these as implicit requirements necessary for correct system behaviour.
+
+Unlike stakeholder-driven requirements, derived requirements were established through analytical reasoning by evaluating how individual business capabilities interacted across the complete operational lifecycle. These requirements ensured that business processes remained consistent under normal, exceptional and boundary conditions while supporting data integrity, operational continuity and regulatory compliance.
+
+### Principal Derived Requirements
+
+#### DR-01 — Unique Business Entity Identification
+Every core business entity—including Medicines, Customers, Orders and Prescriptions—requires a system-generated unique identifier to maintain entity integrity, eliminate duplication and support reliable referencing across relational database structures.
+
+#### DR-02 — Automated Inventory Synchronisation
+Successful order completion automatically updates medicine inventory levels to ensure that stock availability accurately reflects operational transactions and prevents discrepancies between physical inventory and recorded inventory.
+
+#### DR-03 — Stock Availability Verification
+Before confirming customer purchases, inventory availability is validated to ensure sufficient stock exists to fulfil the requested quantity. This prevents overselling while preserving inventory accuracy.
+
+#### DR-04 — Prescription Validation Workflow
+Medicines classified as prescription-controlled require successful verification of an uploaded prescription before order confirmation. This additional validation workflow supports regulatory compliance while ensuring controlled medicines cannot bypass approval procedures.
+
+#### DR-05 — Dynamic Business Calculations
+Operational values including order totals, promotional discounts, dashboard statistics and inventory indicators are calculated dynamically from transactional data rather than being manually maintained, ensuring that management information remains accurate and current throughout daily operations.
+
+#### DR-06 — Session Continuity
+Authenticated users maintain an active session throughout their interaction with the application until an explicit logout occurs. This provides a consistent user experience while preserving controlled access to secured business functions.
+
+#### DR-07 — Operational Data Validation
+Input validation is applied before business transactions are processed to ensure completeness, accuracy and compliance with established business rules. Invalid information is rejected prior to database operations, reducing processing errors and protecting data quality.
+
+#### DR-08 — Confirmation-Based Critical Operations
+Business operations capable of modifying organisational data—including record deletion, order confirmation and transaction completion—require explicit user confirmation before execution. This reduces accidental modifications while improving operational accountability.
+
+#### DR-09 — Exception Handling
+Database failures, invalid transactions and unexpected runtime events are intercepted through structured exception handling mechanisms that maintain application stability while providing meaningful feedback to users without exposing technical implementation details.
+
+#### DR-10 — Real-Time Operational Reporting
+Management reports are generated directly from live operational data rather than static report repositories, ensuring that analytical outputs accurately represent current organisational performance and support informed managerial decision-making.
+
+### Analytical Value of Derived Requirements
+From a Business Analysis perspective, identifying derived requirements significantly reduced implementation uncertainty by addressing operational behaviours that stakeholders often consider implicit rather than explicitly documenting. While these requirements were not directly requested during initial requirement definition, they became essential for maintaining consistency between business expectations, process execution, database behaviour and application functionality.
+
+Furthermore, these analytical outputs established a stronger foundation for subsequent architectural design, database modelling, object-oriented implementation and system testing by ensuring that every operational scenario could be traced back to a clearly understood business objective. This approach reduced the likelihood of functional gaps, strengthened solution completeness and improved the long-term maintainability of the SmartMed Pharmacy Management System.
+
+---
+
+## Assumptions
+
+Every software initiative operates within a set of assumptions that define the expected business environment during solution development. Documenting these assumptions was essential for establishing a realistic analytical baseline, reducing uncertainty during requirements engineering and ensuring that subsequent architectural and implementation decisions remained aligned with the agreed project scope. The assumptions documented in the SRS define the intended operating environment for the application.
+
+Rather than representing confirmed business facts, the following assumptions defined conditions that were considered valid throughout the analysis, design and development lifecycle unless future stakeholder decisions required revision.
+
+### AS-01 — Single-Branch Operational Context
+The solution assumes operation within a single pharmacy environment where inventory, customers, prescriptions and transactions are managed from a central operational database. Multi-branch inventory synchronisation and distributed operations were considered outside the approved project scope.
+
+### AS-02 — Desktop-Based Operational Environment
+The application assumes execution within a Windows desktop environment using the Microsoft .NET Framework. Business processes are therefore optimised for desktop interaction rather than web or mobile deployment.
+
+### AS-03 — Local Database Deployment
+Operational data is assumed to be maintained within a locally hosted SQLite database, providing sufficient performance, reliability and simplified deployment for the defined business environment without introducing external database dependencies.
+
+### AS-04 — Role-Based Operational Responsibilities
+Administrative users are assumed to possess appropriate authority for managing medicines, customers, reports and operational activities, while customer users interact exclusively with consumer-facing functionality such as medicine searching, profile management and order placement.
+
+### AS-05 — Availability of Accurate Operational Data
+The effectiveness of inventory management, reporting and dashboard analytics assumes that administrative users maintain accurate medicine records, stock quantities, pricing information and prescription classifications throughout normal business operations.
+
+### AS-06 — Stable Business Policies
+Business rules governing prescription handling, inventory management, pricing and order processing are assumed to remain stable throughout development. Significant policy changes would require controlled requirement revisions and corresponding updates to design artefacts.
+
+### AS-07 — Organisational Readiness
+The organisation is assumed to possess the necessary technical infrastructure, computing resources and personnel required to operate and maintain the application within its intended business environment.
+
+### Business Analysis Perspective
+Clearly documenting analytical assumptions established defined boundaries for solution planning while reducing uncertainty during requirements interpretation. Recording these assumptions also provided a structured mechanism for identifying future project risks should business conditions, organisational policies or stakeholder expectations evolve beyond the agreed analytical baseline.
+
+---
+
+## Constraints
+
+Project constraints establish the boundaries within which a software solution must be analysed, designed, implemented and validated. Unlike assumptions, which represent expected operating conditions, constraints define mandatory limitations that directly influence architectural decisions, technology selection, implementation strategy and overall solution scope. The SmartMed SRS explicitly constrains the development language, application type, development environment and object-oriented implementation approach.
+
+Throughout the SmartMed Pharmacy Management System, the following constraints governed both Business Analysis activities and technical solution development.
+
+### CN-01 — Technology Constraints
+The application was required to be developed using C#, Windows Forms and the .NET Framework, establishing the technology baseline for the entire Software Development Life Cycle. These constraints directly influenced architectural decisions, user interface design and implementation strategy.
+
+### CN-02 — Database Constraint
+Persistent business data was required to be maintained using a local SQLite database. Consequently, database modelling, entity relationships, integrity constraints and transaction management were designed specifically to support SQLite capabilities while preserving long-term maintainability.
+
+### CN-03 — Architectural Constraint
+The solution architecture was required to support Object-Oriented Software Engineering principles including abstraction, encapsulation, inheritance and modularity. This requirement influenced domain modelling, class responsibilities, component separation and overall application maintainability.
+
+### CN-04 — Scope Constraint
+The approved project scope focused on core pharmacy operations, including authentication, medicine management, customer management, prescription handling, reporting, inventory monitoring and order processing. Broader enterprise capabilities such as supplier integration, online payment gateways, cloud synchronisation and multi-branch management were intentionally excluded to preserve project feasibility.
+
+### CN-05 — Resource Constraint
+Development activities were completed within predefined academic timelines while maintaining alignment between business analysis deliverables, architectural artefacts, database design, implementation and system testing. This required disciplined prioritisation throughout the Software Development Life Cycle.
+
+### CN-06 — Compliance Constraint
+Business processes were required to enforce organisational policies relating to prescription-controlled medicines, inventory validation, unique entity identification and controlled order processing. These mandatory constraints ensured that implemented functionality remained consistent with documented business rules and operational expectations.
+
+### Business Analysis Perspective
+Identifying project constraints during the analysis phase enabled realistic scope definition, informed solution evaluation and prevented requirements that could not be delivered within the agreed technological and organisational boundaries. More importantly, documenting these limitations ensured that every subsequent design decision—including UML modelling, database architecture, object-oriented implementation and testing—remained aligned with both business objectives and project feasibility.
+
+
+---
+
+# Requirements Verification & Validation
+
+Requirements Verification and Validation (V&V) formed a continuous governance activity throughout the SmartMed project rather than a single quality assurance checkpoint performed at the end of development. From a Business Analysis perspective, the objective was to ensure that every documented requirement was technically feasible, internally consistent, aligned with stakeholder expectations, and capable of delivering measurable business value once implemented.
+
+Verification focused on assessing the quality of the documented requirements before implementation commenced, while validation confirmed that the completed solution satisfied the intended business objectives throughout implementation and testing. Maintaining this distinction reduced implementation ambiguity and ensured that business expectations remained aligned with the delivered solution.
+
+---
+
+## Requirements Verification
+
+Verification activities concentrated on evaluating the quality and completeness of the requirements baseline before progressing into architecture, database modelling and software development.
+
+Each requirement was reviewed against recognised requirement quality characteristics to ensure that it was suitable for implementation and capable of supporting subsequent design activities.
+
+The verification process evaluated the following quality attributes:
+
+| Verification Attribute | Verification Objective |
+|------------------------|------------------------|
+| **Completeness** | Confirmed that all identified business processes and stakeholder needs were adequately documented. |
+| **Consistency** | Ensured that individual requirements did not contradict business rules, UML models or related requirements. |
+| **Correctness** | Verified that each requirement accurately represented the intended business behaviour. |
+| **Clarity** | Removed ambiguity by defining requirements using measurable and implementation-ready statements. |
+| **Feasibility** | Assessed technical and operational practicality within the agreed project scope and technology stack. |
+| **Testability** | Confirmed that every requirement could be objectively verified through testing activities. |
+| **Traceability** | Established relationships between requirements and downstream analytical and implementation artefacts. |
+
+Applying these verification activities before implementation significantly reduced requirement volatility, improved analytical consistency and provided a stable foundation for architectural design and object-oriented development.
+
+---
+
+## Requirements Validation
+
+Validation activities focused on confirming that the implemented application fulfilled the operational objectives established during stakeholder analysis and requirements engineering.
+
+Rather than validating isolated software features, validation considered the complete business workflow to ensure that implemented functionality reflected the intended operational behaviour of the pharmacy management process.
+
+Validation confirmed that:
+
+- Business objectives were successfully translated into operational system capabilities.
+- Functional requirements were implemented in accordance with the approved requirements baseline.
+- Business rules were consistently enforced throughout transactional workflows.
+- Customer-facing and administrative processes aligned with documented operational scenarios.
+- Database behaviour maintained the integrity of business information across related entities.
+- User interface workflows supported efficient execution of day-to-day pharmacy operations.
+- Reporting and dashboard functions provided meaningful operational insight for business decision-making.
+- Exception handling and validation mechanisms protected business processes from invalid operational states.
+
+Validation evidence was obtained through functional testing, business rule verification, database validation, workflow execution, user interface testing and end-to-end scenario testing. This iterative validation approach ensured that the delivered solution remained aligned with documented business needs while maintaining consistency across analytical, architectural and implementation artefacts.
+
+---
+
+# Requirements Traceability
+
+Maintaining end-to-end requirements traceability was a fundamental Business Analysis practice adopted throughout the SmartMed project. Rather than treating requirements as independent specification statements, each requirement was systematically connected to the subsequent analytical, design, implementation and testing artefacts generated during the Software Development Life Cycle.
+
+This structured traceability model ensured that every implemented capability could be justified against a documented business objective while enabling efficient impact analysis, validation and future system enhancement.
+
+---
+
+## Traceability Strategy
+
+The project established a progressive relationship between business needs and implementation outcomes through the following traceability chain:
+
+```text
+Business Objectives
+        │
+        ▼
+Stakeholder Needs
+        │
+        ▼
+Business Requirements
+        │
+        ▼
+Functional & Non-Functional Requirements
+        │
+        ▼
+Business Rules
+        │
+        ▼
+Use Cases
+        │
+        ▼
+Business Process Models
+        │
+        ▼
+UML Design Artefacts
+(System Architecture, ERD,
+Class, Sequence & Activity Diagrams)
+        │
+        ▼
+Database Design
+        │
+        ▼
+Object-Oriented Implementation
+        │
+        ▼
+Testing & Solution Validation
+```
+
+---
+
+## Traceability Across the SDLC
+
+Requirements traceability extended beyond documentation by providing continuity throughout every phase of solution delivery.
+
+During analysis, traceability ensured that stakeholder expectations were translated into measurable business and functional requirements. During solution design, those requirements informed the development of UML models, database structures and architectural decisions. Throughout implementation, individual software components and business objects were developed in accordance with the approved analytical baseline. Finally, testing activities validated that implemented functionality continued to satisfy the originating business objectives.
+
+This disciplined approach ensured that changes could be evaluated with minimal ambiguity, design decisions remained business-driven, and implementation activities consistently reflected the approved requirements baseline.
+
+---
+
+## Business Value of Traceability
+
+Maintaining comprehensive traceability delivered several strategic benefits to the project:
+
+- Preserved alignment between stakeholder expectations and implemented functionality.
+- Reduced the risk of omitted, duplicated or conflicting requirements.
+- Improved impact assessment when introducing design or implementation changes.
+- Simplified verification and validation throughout the development lifecycle.
+- Strengthened consistency between analytical documentation, UML models, database design and source code.
+- Supported long-term maintainability by providing a clear rationale for implemented business capabilities.
+- Increased confidence that every delivered feature contributed directly to an identified organisational objective.
+
+From a Business Analysis perspective, traceability acted as the governance mechanism that connected business strategy with technical execution, ensuring that the completed SmartMed Pharmacy Management System represented a business-aligned software solution rather than a collection of independent application features.
+
+
+---
+
+# Business Rules
+
+Business Rules represent the operational policies that govern how the SmartMed Pharmacy Management System behaves within the pharmacy business environment. While requirements describe the capabilities that the solution must provide, business rules define the conditions under which those capabilities are permitted to operate.
+
+Throughout the analysis phase, business rules were treated as organisational policies rather than technical validations. They established the operational boundaries within which business processes could execute, ensuring that every transaction remained consistent with pharmacy procedures, inventory controls and customer service expectations.
+
+These rules became the governing layer between Requirements Engineering and Solution Design, influencing business workflows, UML models, database constraints, object-oriented implementation and validation activities. Rather than existing as isolated statements within the Software Requirements Specification, each business rule was translated into executable system behaviour that could be consistently enforced throughout the application lifecycle.
+
+---
+
+## Business Rule Identification
+
+Business rules were derived through detailed analysis of stakeholder objectives, operational workflows, regulatory considerations, inventory management practices and transaction dependencies documented within the Software Requirements Specification.
+
+The analysis identified several categories of operational rules required to support reliable pharmacy operations:
+
+| Business Rule Category | Business Purpose |
+|------------------------|------------------|
+| Authentication Rules | Protect administrative functions through controlled user access. |
+| Customer Governance | Ensure only registered customers can perform purchasing activities. |
+| Inventory Control | Prevent invalid stock transactions and maintain inventory accuracy. |
+| Prescription Compliance | Enforce mandatory prescription validation for regulated medicines. |
+| Order Processing | Standardise the complete order lifecycle from creation to fulfilment. |
+| Pricing & Promotions | Maintain consistent pricing while supporting promotional discounts. |
+| Reporting Rules | Ensure reports reflect current operational data for decision-making. |
+| Data Governance | Protect business information through validation and integrity controls. |
+
+This structured classification ensured that business policies remained traceable across analytical documentation, database design and implemented business logic.
+
+---
+
+## Business Rule Enforcement
+
+Business rules were not documented solely for reference; they were embedded directly within the operational behaviour of the application.
+
+Throughout implementation, each business rule influenced one or more solution components, including user interface validation, business logic modules, database operations and transaction processing.
+
+Examples include:
+
+- Authentication controls restricting administrative functionality to authorised users.
+- Validation preventing duplicate customer accounts and invalid business records.
+- Inventory controls preventing medicine stock from falling below permissible levels.
+- Automatic verification of prescription requirements before completing regulated medicine purchases.
+- Order lifecycle management enforcing approved status transitions.
+- Automated inventory adjustments following successful order confirmation.
+- Dynamic dashboard calculations reflecting current operational data.
+- Report generation using live transactional information rather than manually maintained summaries.
+
+Embedding business rules throughout the solution ensured that operational policies remained consistently enforced regardless of the user workflow being executed.
+
+---
+
+## Business Value of Business Rules
+
+From a Business Analysis perspective, business rules provide considerably more value than simple system validations.
+
+Within SmartMed, they establish consistency across operational processes, reduce ambiguity during implementation, improve data quality and ensure that organisational policies are reflected within everyday business activities.
+
+The adoption of clearly defined business rules delivered several organisational benefits:
+
+- Standardised operational behaviour across all business processes.
+- Reduced opportunities for inconsistent or invalid transactions.
+- Improved inventory accuracy through controlled stock management.
+- Strengthened compliance for prescription-controlled medicines.
+- Increased confidence in operational reporting and dashboard analytics.
+- Improved maintainability by separating business policy from user interface behaviour.
+- Greater consistency between documented requirements, implemented functionality and expected business outcomes.
+
+This governance layer ultimately ensured that business processes remained predictable, repeatable and aligned with organisational objectives throughout the solution lifecycle.
+
+---
+
+# Business Process Analysis
+
+Business Process Analysis (BPA) was undertaken to understand how operational activities should flow across the pharmacy before defining the solution architecture and software components.
+
+Rather than modelling individual application screens, the analysis focused on understanding business events, process dependencies, stakeholder interactions, decision points, information flows and operational outcomes. This ensured that solution design reflected actual business operations instead of isolated technical functionality.
+
+The resulting process models became the foundation for the Use Case Diagram, Activity Diagrams, Sequence Diagrams, Entity Relationship Diagram, Class Diagram and subsequent object-oriented implementation.
+
+---
+
+## Business Process Modelling Approach
+
+The project adopted a process-driven analysis approach in which every major operational workflow was decomposed into logical business activities before implementation commenced.
+
+Each business process was analysed using the following perspectives:
+
+- Process trigger.
+- Participating stakeholders.
+- Business activities.
+- Decision points.
+- Business rules.
+- Data interactions.
+- Expected business outcome.
+
+This structured analysis reduced process ambiguity while ensuring that every implemented workflow supported a clearly defined operational objective.
+
+---
+
+## Core Business Processes
+
+Analysis identified several business-critical operational processes that collectively define the day-to-day activities performed within the pharmacy environment.
+
+The primary business processes include:
+
+| Business Process | Operational Objective |
+|------------------|-----------------------|
+| User Authentication | Establish secure access to authorised system functions. |
+| Medicine Management | Maintain accurate inventory throughout the medicine lifecycle. |
+| Customer Management | Maintain complete and reliable customer information. |
+| Medicine Discovery | Support efficient medicine search and product selection. |
+| Prescription Processing | Validate prescription-controlled medicines prior to fulfilment. |
+| Order Processing | Manage customer purchases through a controlled transaction workflow. |
+| Inventory Monitoring | Continuously maintain stock availability and expiry visibility. |
+| Reporting & Analytics | Support operational monitoring and management decision-making. |
+
+Each process was subsequently modelled using UML behavioural diagrams to ensure analytical consistency before implementation.
+
+---
+
+## Process Optimisation Considerations
+
+Business Process Analysis also identified opportunities to improve operational efficiency by reducing unnecessary manual intervention throughout routine pharmacy activities.
+
+Several optimisation opportunities were incorporated into the solution, including:
+
+- Automated inventory updates following successful transactions.
+- Dynamic dashboard KPI calculations based on operational data.
+- Integrated prescription validation within the purchasing workflow.
+- Streamlined medicine discovery using search, filtering and sorting mechanisms.
+- Automated report generation from transactional information.
+- Centralised customer information management.
+- Controlled order lifecycle progression through predefined operational states.
+
+These improvements reduced repetitive administrative effort while improving operational consistency and information accuracy.
+
+---
+
+## Relationship Between Business Processes and Solution Design
+
+Business Process Analysis directly informed every subsequent design activity within the project.
+
+The documented workflows provided the behavioural foundation for:
+
+- Use Case modelling.
+- Activity Diagrams.
+- Sequence Diagrams.
+- Entity Relationship modelling.
+- Class design.
+- Database structure.
+- Business object interactions.
+- Object-oriented implementation.
+
+Maintaining this analytical continuity ensured that technical design decisions remained driven by documented business processes rather than implementation convenience.
+
+Consequently, every significant software component implemented within SmartMed can be traced back to an analysed operational process, preserving alignment between organisational objectives, analytical artefacts and delivered functionality.
+
+---
+
+# Requirements Engineering Summary
+
+Requirements Engineering established the analytical foundation upon which the entire SmartMed Pharmacy Management System was designed, implemented and validated.
+
+Rather than limiting the discipline to documenting software functionality, the project adopted a structured Business Analysis approach that progressively transformed organisational objectives into implementable solution components through stakeholder analysis, requirements elicitation, business process analysis, business rule definition and solution modelling.
+
+The resulting requirements baseline informed architectural decisions, database design, UML artefacts, object-oriented implementation and testing activities while maintaining end-to-end traceability throughout the Software Development Life Cycle.
+
+By preserving alignment between business objectives, stakeholder expectations, operational processes, analytical models and implemented functionality, the completed solution represents more than a technically functional desktop application. It demonstrates a business-driven software solution developed through disciplined Requirements Engineering, structured Business Analysis and evidence-based solution design principles.
+
+This analytical approach ensured that every implemented capability delivered measurable business value while supporting long-term maintainability, scalability and operational consistency—reflecting the practices expected within professional Business Analysis and enterprise software delivery environments.
+
+---
+
+# Solution Architecture
+
+Requirements Engineering established **what** the SmartMed Pharmacy Management System needed to achieve from a business perspective. The next stage focused on determining **how** those business capabilities should be realised through a solution architecture capable of supporting maintainability, consistency and long-term operational sustainability.
+
+Rather than selecting a technology stack and designing application components independently, the architecture was derived directly from the approved requirements baseline. Every architectural responsibility, system module and data interaction was evaluated against documented business processes, stakeholder expectations and operational rules to ensure that the implemented solution remained aligned with the organisational objectives established during Business Analysis.
+
+The resulting architecture defines a structured separation of responsibilities across the application while maintaining complete traceability between business requirements, application services, database operations and implemented functionality. This separation reduces unnecessary coupling, improves maintainability, simplifies future enhancement activities and enables individual business capabilities to evolve with minimal impact on unrelated components.
+
+The architectural model also provides the foundation for all subsequent design artefacts presented throughout this section, including behavioural models, structural models, database design and object-oriented implementation.
+
+---
+
+## Layered Solution Architecture
+
+> **Architecture Diagram Placeholder**
+
+<p align="center">
+
+**[Insert SmartMed System Architecture Diagram Here]**
+
+</p>
+
+*Figure — SmartMed Pharmacy Management System Layered Solution Architecture.*
+
+### Architectural Analysis
+
+The SmartMed Pharmacy Management System adopts a layered architectural model that organises the solution into five distinct architectural responsibilities: **Actors**, **Presentation Layer**, **Business Logic Layer**, **Data Access Layer** and **Database Layer**. Rather than functioning as independent technical components, these layers collectively establish a controlled execution pathway through which every business transaction is validated, processed and persisted.
+
+User interaction begins within the Windows Forms Presentation Layer, where administrators and customers execute business operations through dedicated interfaces aligned with their operational responsibilities. The presentation layer intentionally remains lightweight, limiting its responsibility to interaction management while delegating all business decision-making to specialised service modules. This separation ensures that user interface changes do not introduce unintended impacts on core business behaviour.
+
+The Business Logic Layer represents the architectural core of the solution. Each module corresponds directly to a documented business capability—including authentication, medicine management, customer administration, prescription processing, order management, reporting and dashboard analytics—thereby preserving direct traceability between approved business requirements and implemented application services. Business rules are enforced centrally within this layer, ensuring consistent operational behaviour regardless of the originating user interface.
+
+The Data Access Layer acts as an abstraction boundary between business processing and persistent storage. Database communication is encapsulated within a dedicated Database Manager responsible for connection management, query execution and transaction handling. By isolating persistence concerns from business processing, the architecture improves maintainability, reduces implementation dependencies and enables future database changes with minimal impact on business modules.
+
+Persistent organisational information is maintained within a normalised SQLite relational database containing the application's principal business entities, including Administrators, Customers, Medicines, Orders, Order Items and Prescriptions. The relational structure supports referential integrity, efficient transaction processing and consistent data governance across the complete operational lifecycle.
+
+From a Business Analysis perspective, the architecture demonstrates strong alignment between business capabilities and technical implementation. Every architectural component exists to realise a defined organisational requirement rather than introducing unnecessary technical complexity. This alignment preserves end-to-end traceability across Requirements Engineering, Solution Design, Object-Oriented Development and Verification activities, ensuring that the delivered solution remains business-driven throughout the Software Development Life Cycle.
+
+---
