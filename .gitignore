@@ -1,0 +1,28 @@
+# Visual Studio
+.vs/
+
+# Build Output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userprefs
+
+# Rider
+.idea/
+
+# ReSharper
+_ReSharper*/
+
+# Logs
+*.log
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# SQLite temporary files
+*.db-wal
+*.db-shm
