@@ -1051,15 +1051,15 @@ The architectural model also provides the foundation for all subsequent design a
 
 ## Layered Solution Architecture
 
-> **Architecture Diagram Placeholder**
-
 <p align="center">
-
-**[Insert SmartMed System Architecture Diagram Here]**
-
+    <img src="Documentation/Diagrams/System_Arch_SmartMed.png"
+         alt="SmartMed Pharmacy Management System Architecture"
+         width="1000">
 </p>
 
-*Figure — SmartMed Pharmacy Management System Layered Solution Architecture.*
+<p align="center">
+<i><strong>Figure 1.</strong> Layered Solution Architecture of the SmartMed Pharmacy Management System.</i>
+</p>
 
 ### Architectural Analysis
 
@@ -1076,3 +1076,42 @@ Persistent organisational information is maintained within a normalised SQLite r
 From a Business Analysis perspective, the architecture demonstrates strong alignment between business capabilities and technical implementation. Every architectural component exists to realise a defined organisational requirement rather than introducing unnecessary technical complexity. This alignment preserves end-to-end traceability across Requirements Engineering, Solution Design, Object-Oriented Development and Verification activities, ensuring that the delivered solution remains business-driven throughout the Software Development Life Cycle.
 
 ---
+
+---
+
+# Repository Status
+
+The SmartMed Pharmacy Management System is being documented as a comprehensive Software Engineering case study that captures the complete journey from Business Analysis through solution implementation and validation.
+
+The current documentation establishes the analytical and architectural foundation of the project, including stakeholder analysis, requirements engineering, business process analysis, business rule definition and solution architecture. The remaining sections are currently being expanded to document the subsequent phases of the Software Development Life Cycle with the same level of analytical depth and professional rigour.
+
+The forthcoming sections will progressively cover:
+
+- Detailed UML solution modelling
+- Database design and information architecture
+- Object-Oriented implementation strategy
+- Verification, validation and testing activities
+- Technical implementation decisions
+- Project evaluation and retrospective analysis
+
+---
+
+## Supporting Project Artefacts
+
+While the remaining documentation is under active development, the repository already contains the complete supporting artefacts produced throughout the project lifecycle.
+
+Readers are encouraged to explore the following resources to obtain a comprehensive understanding of the solution:
+
+- **Solution Architecture and UML Diagrams** available under `Documentation/Diagrams`
+- **Complete implementation source code** demonstrating the object-oriented solution
+- **Application screenshots** illustrating the delivered business functionality
+- **University Software Engineering documentation** submitted as part of the complete coursework deliverables
+- **Git commit history** reflecting the iterative evolution of both the solution and its supporting documentation
+
+These artefacts collectively demonstrate the analytical reasoning, architectural decisions and implementation outcomes discussed throughout this case study while providing additional technical depth beyond the narrative presented within the README.
+
+---
+
+> **Documentation Status**
+>
+> This repository is actively maintained and continuously expanded as an evolving professional portfolio. Documentation enhancements are published incrementally as each stage of the Software Development Life Cycle is reviewed, refined and documented to enterprise documentation standards.
